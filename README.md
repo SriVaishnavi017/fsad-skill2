@@ -1,4 +1,3 @@
-Here's the README rewritten in different words:
 
 Inventory Management System with Hibernate
 A Spring Boot-based application that handles product inventory operations using Hibernate ORM backed by an H2 in-memory database.
