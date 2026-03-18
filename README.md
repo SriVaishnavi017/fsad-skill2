@@ -1,72 +1,62 @@
-# Hibernate Inventory Management System
+Here's the README rewritten in different words:
 
-A Spring Boot application for managing product inventory using Hibernate ORM and an in-memory H2 database.
+Inventory Management System with Hibernate
+A Spring Boot-based application that handles product inventory operations using Hibernate ORM backed by an H2 in-memory database.
+📋 What It Does
 
-## 📋 Features
+Add Products – Register new items into the inventory
+View Products – Look up item details using their ID
+Modify Products – Update pricing and stock levels
+Remove Products – Delete items from the system
+H2 Console – Inspect the database through a browser interface
+Interactive Menu – Navigate features via a command-line prompt
 
-- **Create Products** - Add new products to the inventory
-- **Read Products** - Retrieve product information by ID
-- **Update Products** - Modify product price and quantity
-- **Delete Products** - Remove products from inventory
-- **H2 Console** - View database contents via web interface
-- **User Input** - Interactive command-line menu
+🛠️ Tech Stack
 
-## 🛠️ Technologies Used
+Java 21 – Core language
+Spring Boot 3.5.11 – Application framework
+Hibernate 6.6.42 – Object-relational mapping
+H2 Database – Lightweight in-memory database
+Maven – Dependency and build management
+JPA – Java Persistence API
 
-- **Java 21** - Programming language
-- **Spring Boot 3.5.11** - Framework
-- **Hibernate 6.6.42** - ORM
-- **H2 Database** - In-memory relational database
-- **Maven** - Build tool
-- **JPA** - Java Persistence API
-
-## 📦 Project Structure
-
-```
+📦 Folder Layout
 HibernateInventory/
 ├── src/
 │   ├── main/
 │   │   ├── java/com/inventory/
-│   │   │   ├── HibernateInventoryApplication.java  (Main entry point)
+│   │   │   ├── HibernateInventoryApplication.java  (Application entry point)
 │   │   │   ├── dao/
-│   │   │   │   └── ProductDAO.java                 (Database operations)
+│   │   │   │   └── ProductDAO.java                 (Data access logic)
 │   │   │   └── entity/
-│   │   │       └── Product.java                    (Entity model)
+│   │   │       └── Product.java                    (Data model)
 │   │   └── resources/
-│   │       └── application.properties              (Database config)
+│   │       └── application.properties              (App configuration)
 │   └── test/
 │       └── java/com/inventory/HibernateInventory/
 │           └── HibernateInventoryApplicationTests.java
-├── pom.xml                                        (Maven dependencies)
-└── README.md                                      (This file)
+├── pom.xml                                        (Maven config)
+└── README.md                                      (Documentation)
+🚀 Setup & Installation
+Requirements
+
+Java 21 (JDK)
+Maven 3.6 or above
+
+Steps
+
+Go to the project folder:
+
+bashcd HibernateInventory
+
+Build the project:
+
+bashmvn clean install
+Launch the App
+bashmvn spring-boot:run
 ```
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Java 21 (JDK)
-- Maven 3.6+
-
-### Installation
-
-1. Navigate to project directory:
-```bash
-cd HibernateInventory
-```
-
-2. Build the project:
-```bash
-mvn clean install
-```
-
-### Running the Application
-
-Start the application with interactive menu:
-```bash
-mvn spring-boot:run
-```
-
-You will see the menu:
+Once started, you'll see:
 ```
 ========== INVENTORY MANAGEMENT ==========
 1. Create Product
@@ -77,9 +67,9 @@ You will see the menu:
 Enter your choice:
 ```
 
-## 📝 Usage Examples
+## 📝 Sample Interactions
 
-### Create a Product
+### Adding a Product
 ```
 Enter your choice: 1
 Enter product name: Keyboard
@@ -89,14 +79,14 @@ Enter quantity: 20
 → Product saved: Keyboard
 ```
 
-### Read a Product
+### Fetching a Product
 ```
 Enter your choice: 2
 Enter product ID: 1
 → Found: Keyboard
 ```
 
-### Update a Product
+### Editing a Product
 ```
 Enter your choice: 3
 Enter product ID: 1
@@ -105,60 +95,42 @@ Enter new quantity: 15
 → Product updated: Keyboard
 ```
 
-### Delete a Product
+### Removing a Product
 ```
 Enter your choice: 4
 Enter product ID: 1
 → Product deleted: Keyboard
 ```
 
-## 🗄️ Database Configuration
+## 🗄️ Database Setup
 
-Database details in `application.properties`:
+Configured in `application.properties`:
 - **Type**: H2 (In-memory)
 - **URL**: `jdbc:h2:mem:inventory_db`
 - **Username**: `sa`
 - **Password**: `password`
-- **Auto DDL**: `update` (creates/updates tables automatically)
+- **DDL Mode**: `update` (tables are auto-created on startup)
 
-### View Database Web Console
+### Accessing the Web Console
 
-While the app is running, open in browser:
+While the app is running, visit:
 ```
 http://localhost:8080/h2-console
-```
+Credentials:
 
-**Login details:**
-- JDBC URL: `jdbc:h2:mem:inventory_db`
-- User: `sa`
-- Password: `password`
+JDBC URL: jdbc:h2:mem:inventory_db
+User: sa
+Password: password
 
-Run SQL query:
-```sql
-SELECT * FROM products;
-```
-
-## 🧪 Running Tests
-
-```bash
-mvn test
-```
-
-## 📄 Entity Model
-
-### Product Entity
-
-| Field | Type | Description |
-|-------|------|-------------|
-| id | Integer | Primary key (AUTO_INCREMENT) |
-| name | String | Product name |
-| description | String | Product description |
-| price | Double | Product price |
-| quantity | Integer | Stock quantity |
-
-### Example Product
-```json
-{
+To view all records:
+sqlSELECT * FROM products;
+🧪 Running Tests
+bashmvn test
+📄 Data Model
+Product Fields
+FieldTypeDescriptionidIntegerAuto-generated primary keynameStringName of the productdescriptionStringBrief product descriptionpriceDoubleListed pricequantityIntegerUnits available in stock
+Sample Record
+json{
   "id": 1,
   "name": "Laptop",
   "description": "Gaming Laptop",
@@ -167,27 +139,21 @@ mvn test
 }
 ```
 
-## 🔍 CRUD Operations
+## 🔍 Operation Details
 
-### Create
-- Adds a new product to the inventory
-- Auto-generates ID
+### Add
+Creates a new inventory entry with an auto-assigned ID.
 
-### Read
-- Retrieves product by ID
-- Returns product details or "Product not found" message
+### View
+Looks up and displays a product by its ID, or shows a "not found" message.
 
-### Update
-- Updates price and quantity for existing product
-- Requires product ID
+### Edit
+Updates the price and stock count for a given product ID.
 
-### Delete
-- Removes product from inventory
-- Requires product ID
+### Remove
+Permanently deletes the product associated with the provided ID.
 
-## 📊 Build Output
-
-When running the application, you'll see:
+## 📊 Sample Console Output
 ```
 Started HibernateInventoryApplication in 2.061 seconds
 Product saved: Laptop
@@ -196,30 +162,15 @@ Found: Laptop
 Product updated: Laptop
 Product deleted: Mouse
 BUILD SUCCESS
-```
+🐛 Common Issues
+"Access denied for user 'root'"
+This app runs on H2, not MySQL — no external database configuration is needed.
+"Unable to locate persister"
+Make sure the @EntityScan annotation points to the correct package.
+Build fails
+Try running mvn clean install to do a fresh build.
+📝 Things to Keep in Mind
 
-## 🐛 Troubleshooting
-
-### Issue: "Access denied for user 'root'"
-**Solution**: Application uses H2 in-memory database, not MySQL. No external database setup needed.
-
-### Issue: "Unable to locate persister"
-**Solution**: Ensure `@EntityScan` annotation includes correct package path.
-
-### Issue: Build fails
-**Solution**: Run `mvn clean install` to rebuild from scratch.
-
-## 📝 Notes
-
-- H2 database is **in-memory**, data is cleared when app shuts down
-- For persistent storage, switch to MySQL/PostgreSQL
-- Tests can be run with `mvn test`
-- Application automatically creates tables on startup
-
-## 📧 Support
-
-For issues or questions, check the logs or review the source code comments.
-
-## 📄 License
-
-Open source project for learning purposes.
+H2 is an in-memory database — all data is wiped when the application stops
+To retain data across sessions, migrate to MySQL or PostgreSQL
+Tables are created automatically when the app starts up
